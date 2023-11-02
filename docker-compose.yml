@@ -1,0 +1,48 @@
+version: '3.7'
+
+services:
+  kong:
+    image: kong:latest
+    ports:
+      - "8000:8000"
+      - "8443:8443"
+      - "8001:8001"
+      - "8002:8002"
+      - "8444:8444"
+    depends_on:
+      - postgres
+    environment:
+      - KONG_ADMIN_LISTEN=0.0.0.0:8001, 0.0.0.0:8444 ssl
+      - KONG_PROXY=localhost:8000
+      - KONG_ADMIN_API=localhost:8001
+      - KONG_MANAGER=localhost:8002
+      - KONG_DEV_PORTAL=localhost:8003
+      - KONG_FILES_API=localhost:8004
+      - KONG_DATABASE=postgres
+      - KONG_PG_HOST=postgres
+      - KONG_PG_USER=kong
+      - KONG_PG_PASSWORD=kong
+      - KONG_PROXY_ACCESS_LOG=/dev/stdout
+      - KONG_ADMIN_ACCESS_LOG=/dev/stdout
+      - KONG_PROXY_ERROR_LOG=/dev/stderr
+      - KONG_ADMIN_ERROR_LOG=/dev/stderr
+      - KONG_PLUGINS=static-files
+      - KONG_PLUGINSERVER_NAMES=static-files
+      - KONG_PLUGINSERVER_STATIC_FILES_START_CMD=/usr/local/bin/static-files
+      - KONG_PLUGINSERVER_STATIC_FILES_QUERY_CMD=/usr/local/bin/static-files -dump
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./bin/static-files:/usr/local/bin/static-files
+
+  postgres:
+    image: postgres:latest
+    volumes:
+      - kong-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=kong
+      - POSTGRES_PASSWORD=kong
+      - POSTGRES_DB=kong
+
+volumes:
+  kong-data:
