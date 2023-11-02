@@ -1,4 +1,4 @@
-https://github.com/at-silva/kong-static-files-plugin/actions/workflows/build_test_and_lint.yml/badge.svg
+![Build, Test and Lint](https://github.com/at-silva/kong-static-files-plugin/actions/workflows/build_test_and_lint.yml/badge.svg)
 
 # Static Files Plugin
 
