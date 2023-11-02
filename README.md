@@ -1,3 +1,5 @@
+https://github.com/at-silva/kong-static-files-plugin/actions/workflows/build_test_and_lint.yml/badge.svg
+
 # Static Files Plugin
 
 [helloworld.webm](https://github.com/at-silva/kong-static-files-plugin/assets/34191466/8f1e10a6-2754-44a3-b6ea-192bc51644f1)
