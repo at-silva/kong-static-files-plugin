@@ -54,39 +54,41 @@ To install the Kong Static Files Plugin, follow these steps:
 
 ### Kong Configuration
 
-To configure the "static-files" plugin, you need to set up the necessary Kong settings.
+To configure the "static-files" plugin, you need to set up the necessary settings in your `kong.conf` file.
 
-1. `kong_plugins`: In your Kong configuration (usually kong.conf), add the "static-files" plugin to the kong_plugins list to enable it:
-
-    ```
-    kong_plugins = bundled,static-files
-    ```
-
-2. `kong_pluginserver_names`: Configure the server names for the "static-files" plugin. In kong.conf, add an entry like this:
+1. `plugins`: In your Kong configuration (usually kong.conf), add the "static-files" plugin to the kong_plugins list to enable it:
 
     ```
-    kong_pluginserver_names = static-files
+    plugins = bundled,static-files
+    ```
+
+2. `pluginserver_names`: Configure the server names for the "static-files" plugin. In kong.conf, add an entry like this:
+
+    ```
+    pluginserver_names = static-files
     ```
 
     This entry defines the server name for your plugin.
 
-3. `kong_pluginserver_static_files_start_cmd`: Define the start command for the "static-files" plugin. In kong.conf, add an entry like this:
+3. `pluginserver_static_files_start_cmd`: Define the start command for the "static-files" plugin. In kong.conf, add an entry like this:
 
     ```
-    kong_pluginserver_static_files_start_cmd = /usr/bin/static-files
+    pluginserver_static_files_start_cmd = /usr/local/bin/static-files
     ```
 
-    Replace /usr/bin/my-static-files-server with the actual path to your Go binary.
+    Replace /usr/local/bin/my-static-files-server with the actual path to your Go binary.
 
-4. `kong_pluginserver_static-files_query_cmd`: Define the query command for the "static-files" plugin. In kong.conf, add an entry like this:
+4. `pluginserver_static-files_query_cmd`: Define the query command for the "static-files" plugin. In kong.conf, add an entry like this:
 
     ```
-    kong_pluginserver_static-files_query_cmd = /usr/bin/static-files -dump
+    pluginserver_static-files_query_cmd = /usr/local/bin/static-files -dump
     ```
 
-    Again replace /usr/bin/my-static-files-server with the actual path to your Go binary.
+    Again, replace /usr/local/bin/my-static-files-server with the actual path to your Go binary.
 
 Check the [docker-compose.yml](docker-compose.yml) file in this repo for more details on how to setup Kong on Docker.
+
+You can find a sample [kong.config file here](static-files/plugin/samples/kong.conf).
 
 ### Plugin Configuration via Kong Configuration File
 
@@ -96,34 +98,41 @@ The Kong Static Files Plugin can be configured through Kong's configuration file
 
 2. Add the following configuration for the Kong Static Files Plugin:
 
-```yaml
-_format_version: '3.0'
-services:
-  - name: static-files-service
-    routes:
-        - name: static-files-urls
-        protocols:
-        - http
-        - https
-        paths:
-        - /assetlinks.json
-        - /robots.txt
-    plugins:
-      - name: static-files
-        config:
-          /assetlinks.json:
-            contentType: application/json
-            content: '{"example": "metadata"}'
-          /robots.txt:
-            contentType: text/plain
-            content: 'User-agent: *\nDisallow: /'
-```
+   ```yaml
+   _format_version: "3.0"
+
+   services:
+   - name: static-files-service
+      url: http://example.com
+      routes:
+         - name: static-files-urls
+         protocols:
+            - "http"
+            - "https"
+         paths:
+            - /assetlinks.json
+            - /robots.txt
+      plugins:
+         - name: static-files
+         config:
+            paths:
+               /assetlinks.json:
+               contentType: application/json
+               content: '{"example": "metadata"}'
+               /robots.txt:
+               contentType: text/plain
+               content: | 
+                  User-agent: *
+                  Disallow: /
+   ```
 
    Make sure to adjust the configuration according to your setup.
 
 3. Save the configuration file.
 
 4. Restart Kong to apply the changes.
+
+You can find a sample [config.yml file here](static-files/plugin/samples/config.yml).
 
 ### Configuration via Admin API
 
