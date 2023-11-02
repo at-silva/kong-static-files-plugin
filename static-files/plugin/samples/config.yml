@@ -1,0 +1,25 @@
+_format_version: "3.0"
+
+services:
+  - name: static-files-service
+    url: http://example.com
+    routes:
+      - name: static-files-urls
+        protocols:
+          - "http"
+          - "https"
+        paths:
+          - /assetlinks.json
+          - /robots.txt
+    plugins:
+      - name: static-files
+        config:
+          paths:
+            /assetlinks.json:
+              contentType: application/json
+              content: '{"example": "metadata"}'
+            /robots.txt:
+              contentType: text/plain
+              content: | 
+                User-agent: *
+                Disallow: /
