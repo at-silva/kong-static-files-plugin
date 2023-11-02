@@ -20,7 +20,7 @@ This README provides information on how to install, configure, and use the Kong 
 
 ## Features
 
-- **Dynamic Content Hosting**: Serve textual metadata files directly from Kong, allowing you to manage and update them easily.
+- **Dynamic Content Hosting**: Serve textual metadata files like `robots.txt`, `AssetLinks.json`, `apple-app-site-association` and `ads.txt` directly from Kong, allowing you to manage and update them easily.
 
 - **Customizable Content Types**: You can specify the `Content-Type` for each metadata file, ensuring compatibility with various web services and browsers.
 
