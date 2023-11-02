@@ -27,7 +27,10 @@ type (
 )
 
 func init() {
-	mime.AddExtensionType(".txt", "text/plain") // make sure txt is available
+	// make sure txt is available
+	if err := mime.AddExtensionType(".txt", "text/plain"); err != nil {
+		panic(err)
+	}
 }
 
 func New() interface{} {
@@ -50,7 +53,7 @@ func (sf StaticFile) ResolveContentType() string {
 func (c *Config) Access(kong *pdk.PDK) {
 	path, err := kong.Request.GetPath()
 	if err != nil {
-		kong.Log.Err(ErrPathFailed)
+		_ = kong.Log.Err(ErrPathFailed)
 		kong.Response.ExitStatus(http.StatusInternalServerError)
 		return
 	}
