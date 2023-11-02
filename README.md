@@ -1,13 +1,13 @@
-# Kong Static Files Plugin
+# Static Files Plugin
 
 [helloworld.webm](https://github.com/at-silva/kong-static-files-plugin/assets/34191466/8f1e10a6-2754-44a3-b6ea-192bc51644f1)
 
 
 ## Introduction
 
-The Kong Static Files Plugin is a custom plugin for [Kong](https://konghq.com/), an open-source API Gateway and Microservices Management Layer. This plugin allows Kong to host and serve textual metadata files, making it easy to serve plain text content alongside your APIs. You can use it to serve simple configuration files, documentation, or any other textual data that needs to be delivered over HTTP.
+The Static Files Plugin is a custom plugin for [Kong](https://konghq.com/), an open-source API Gateway and Microservices Management Layer. This plugin allows Kong to host and serve textual metadata files, making it easy to serve plain text content alongside your APIs. You can use it to serve simple configuration files, documentation, or any other textual data that needs to be delivered over HTTP.
 
-This README provides information on how to install, configure, and use the Kong Static Files Plugin.
+This README provides information on how to install, configure, and use the Static Files Plugin.
 
 ## Table of Contents
 - [Features](#features)
@@ -29,14 +29,14 @@ This README provides information on how to install, configure, and use the Kong 
 
 ## Prerequisites
 
-Before using the Kong Static Files Plugin, you need to have the following components set up:
+Before using the Static Files Plugin, you need to have the following components set up:
 
 - [Kong](https://konghq.com/kong/) installed and configured on your system.
 - Basic knowledge of Kong and its core concepts.
 
 ## Installation
 
-To install the Kong Static Files Plugin, follow these steps:
+To install the Static Files Plugin, follow these steps:
 
 1. Ensure that Kong is properly installed and running on your system.
 
@@ -94,11 +94,11 @@ You can find a sample [kong.config file here](static-files/plugin/samples/kong.c
 
 ### Plugin Configuration via Kong Configuration File
 
-The Kong Static Files Plugin can be configured through Kong's configuration file or using the Admin API. Here's how to configure the plugin:
+The Static Files Plugin can be configured through Kong's configuration file or using the Admin API. Here's how to configure the plugin:
 
 1. Open your Kong configuration file (commonly `kong.conf`).
 
-2. Add the following configuration for the Kong Static Files Plugin:
+2. Add the following configuration for the Static Files Plugin:
 
    ```yaml
    _format_version: "3.0"
@@ -138,7 +138,7 @@ You can find a sample [config.yml file here](static-files/plugin/samples/config.
 
 ### Configuration via Admin API
 
-You can also configure the Kong Static Files Plugin using the Kong Admin API:
+You can also configure the Static Files Plugin using the Kong Admin API:
 
 1. Create a new service if you haven't already:
 
@@ -148,7 +148,7 @@ You can also configure the Kong Static Files Plugin using the Kong Admin API:
 
    Replace `http://example.com` with the URL of your service.
 
-2. Add the Kong Static Files Plugin to the service:
+2. Add the Static Files Plugin to the service:
 
    ```shell
    curl -i -X POST --url http://localhost:8001/services/static-files-service/plugins/ --data 'name=static-files'
@@ -164,11 +164,11 @@ You can also configure the Kong Static Files Plugin using the Kong Admin API:
 
    Replace `/path/to/your/file.txt` with the desired path and adjust the `contentType` and `content` fields accordingly.
 
-4. The Kong Static Files Plugin is now configured and ready to use.
+4. The Static Files Plugin is now configured and ready to use.
 
 ## Usage
 
-The Kong Static Files Plugin serves static textual metadata files at the specified paths. Here's how to use it:
+The Static Files Plugin serves static textual metadata files at the specified paths. Here's how to use it:
 
 1. Make a request to your Kong service with a path that matches one of the configured paths.
 
@@ -187,11 +187,11 @@ The Kong Static Files Plugin serves static textual metadata files at the specifi
 
 ## Contributing
 
-We welcome contributions to the Kong Static Files Plugin. If you find a bug, have an enhancement in mind, or want to add new features, please open an issue on the GitHub repository. We appreciate your help in making this plugin even better.
+We welcome contributions to the Static Files Plugin. If you find a bug, have an enhancement in mind, or want to add new features, please open an issue on the GitHub repository. We appreciate your help in making this plugin even better.
 
 ## License
 
-The Kong Static Files Plugin is released under the [MIT License](LICENSE). Please refer to the [LICENSE](LICENSE) file for more information.
+The Static Files Plugin is released under the [MIT License](LICENSE). Please refer to the [LICENSE](LICENSE) file for more information.
 
 ---
 
