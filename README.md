@@ -1,6 +1,7 @@
 # Kong Static Files Plugin
 
-[helloworld.webm](https://github.com/at-silva/kong-static-files-plugin/assets/34191466/ce204f78-e2c9-4ed7-8e37-2a0cb6cbddd5)
+[helloworld.webm](https://github.com/at-silva/kong-static-files-plugin/assets/34191466/8f1e10a6-2754-44a3-b6ea-192bc51644f1)
+
 
 ## Introduction
 
