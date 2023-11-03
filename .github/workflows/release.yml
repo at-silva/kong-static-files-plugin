@@ -26,4 +26,4 @@ jobs:
     - name: Create a new release
       uses: softprops/action-gh-release@v1
       with:
-        files: static-files/static-files
+        files: ./static-files/static-files
