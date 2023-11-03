@@ -20,7 +20,7 @@ jobs:
         go-version: '1.21.3'
         
     - name: Build
-      run: go build -v ./...
+      run: go build -v ./... -o static-files
       working-directory: ./static-files
       
     - name: Create a new release
